@@ -3,7 +3,6 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
-import { rhythm, scale } from '../utils/typography'
 
 class StackCheatTemplate extends React.Component {
   render() {
@@ -15,13 +14,27 @@ class StackCheatTemplate extends React.Component {
         <SEO title={post.frontmatter.title} description={post.excerpt} />
 
         <div className="mt-5 container">
-          <div className="row mb-5">
+          <div className="row mb-2">
+            {/* title block */}
             <div className="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
               {/* <h1>{post.frontmatter.title}</h1> */}
 
               <div className="card bg-primary text-white border-0 p-3">
                 <div className="card-body">
                   <h5 className="card-title mb-0">{post.frontmatter.title}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* intro block */}
+          <div className="row mb-5">
+            <div className="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+              {/* <h1>{post.frontmatter.title}</h1> */}
+
+              <div className="card p-3">
+                <div className="card-body">
+                  <p className="card-text">{post.frontmatter.intro}</p>
                 </div>
               </div>
             </div>
@@ -54,6 +67,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        intro
         date(formatString: "MMMM DD, YYYY")
       }
     }
