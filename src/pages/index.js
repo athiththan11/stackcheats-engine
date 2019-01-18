@@ -18,26 +18,32 @@ class BlogIndex extends React.Component {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
 
-        {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4)
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
+        <div className="container card-columns">
+          {posts.map(({ node }) => {
+            const title = node.frontmatter.title || node.fields.slug
+            return (
+              <div className="card" key={node.fields.slug}>
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <Link
+                      style={{ textDecoration: `none` }}
+                      to={node.fields.slug}
+                    >
+                      {title}
+                    </Link>
+                  </h5>
+                  <p className="card-text">{node.frontmatter.intro}</p>
 
-              <small>{node.frontmatter.date}</small>
-
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })}
+                  <footer className="blockquote-footer">
+                    <small className="text-muted">
+                      {node.frontmatter.updated}
+                    </small>
+                  </footer>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </Layout>
     )
   }
@@ -62,6 +68,8 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            intro
+            updated(formatString: "MMMM DD, YYYY")
           }
         }
       }

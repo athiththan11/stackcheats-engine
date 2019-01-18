@@ -1,13 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import $ from 'jquery'
-import Popper from 'popper.js'
+import 'jquery'
+import 'popper.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 
 import React from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
-
-import { rhythm, scale } from '../utils/typography'
 
 class Layout extends React.Component {
   render() {
@@ -15,72 +12,61 @@ class Layout extends React.Component {
     const rootPath = `${__PATH_PREFIX__}/`
     let header
 
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
+    // checks for home page and post page to render different types of header elements
+    // if (location.pathname === rootPath) {
+    //   header = (
+    //     <h3 className="container display-4 mt-5">
+    //       <Link
+    //         style={{
+    //           boxShadow: `none`,
+    //           textDecoration: `none`,
+    //           color: `inherit`
+    //         }}
+    //         to={`/`}
+    //       >
+    //         {title}
+    //       </Link>
+    //     </h3>
+    //   )
+    // } else {
+    //   header = (
+    //     <h3 className="container display-4 mt-5">
+    //       <Link
+    //         style={{
+    //           boxShadow: `none`,
+    //           textDecoration: `none`,
+    //           color: `inherit`
+    //         }}
+    //         to={`/`}
+    //       >
+    //         {title}
+    //       </Link>
+    //     </h3>
+    //   )
+    // }
+
+    header = (
+      <h3 className="container display-4 mt-5">
+        <Link
           style={{
-            ...scale(1.5),
-            marginBottom: rhythm(1.5),
-            marginTop: 0
+            boxShadow: `none`,
+            textDecoration: `none`,
+            color: `inherit`
           }}
+          to={`/`}
         >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
-      )
-    }
+          {title}
+        </Link>
+      </h3>
+    )
+
     return (
       <div>
-        <Helmet>
-          <title>{title}</title>
-        </Helmet>
-        <div
-          className="container"
-          style={
-            {
-              // marginLeft: `auto`,
-              // marginRight: `auto`,
-              // maxWidth: rhythm(24),
-              // padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`
-            }
-          }
-        >
-          {header}
-          {children}
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
-        </div>
+        {/* head element */}
+        {header}
+
+        {/* body or child element */}
+        {children}
       </div>
     )
   }

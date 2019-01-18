@@ -14,26 +14,25 @@ class StackCheatTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
 
-        <h1>{post.frontmatter.title}</h1>
+        <div className="mt-5 container">
+          <div className="row mb-5">
+            <div className="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+              {/* <h1>{post.frontmatter.title}</h1> */}
 
-        {/* <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1)
-          }}
-        >
-          {post.frontmatter.date}
-        </p> */}
-
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-
-        <hr
-          style={{
-            marginBottom: rhythm(1)
-          }}
-        />
+              <div className="card bg-primary text-white border-0 p-3">
+                <div className="card-body">
+                  <h5 className="card-title mb-0">{post.frontmatter.title}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div
+              className="col"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
+          </div>
+        </div>
       </Layout>
     )
   }
