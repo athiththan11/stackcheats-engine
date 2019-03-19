@@ -62,14 +62,14 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
-          fields {
-            slug
-          }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
             intro
             updated(formatString: "MMMM DD, YYYY")
+          }
+          fields {
+            slug
           }
         }
       }

@@ -3,6 +3,7 @@ title: Vim
 category: Apps
 weight: -1
 updated: 2018-05-14
+date: '2015-05-01T22:12:03.284Z'
 aliases:
   - sketchapp
 intro: |

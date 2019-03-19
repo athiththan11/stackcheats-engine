@@ -18,7 +18,7 @@ module.exports = {
     sheetPath: SHEET_PATH,
     siteUrl: ``,
     social: {
-      twitter: `kylemathews`
+      twitter: `athiththan11`
     }
   },
   plugins: [
@@ -52,7 +52,6 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`
             }
           },
-          `gatsby-remark-prismjs`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

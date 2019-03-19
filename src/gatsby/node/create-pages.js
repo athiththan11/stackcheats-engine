@@ -1,31 +1,34 @@
 const path = require(`path`)
 
 const QUERY = `
-    {
-        allMarkdownRemark {
-            edges {
-                node {
-                    id
-                    fileAbsolutePath
-                    frontmatter {
-                        title
-                        category
-                        weight
-                        updated
-                    }
-                    fields {
-                        slug
-                    }
-                }
-            }
+  {
+    allMarkdownRemark {
+      edges {
+        node {
+          id
+          fileAbsolutePath
+          frontmatter {
+              title
+              category
+              weight
+              updated
+          }
+          fields {
+            slug
+          }
         }
+      }
     }
+  }
 `
 
 const createPages = ({ graphql, actions }) => {
   const StackCheatTemplate = path.resolve(
     __dirname,
-    `../../../src/templates/stackcheat-template.js`
+    '..',
+    '..',
+    '..',
+    `src/templates/stackcheat-template.js`
   )
 
   return graphql(QUERY).then(result => {
