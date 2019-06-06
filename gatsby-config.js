@@ -16,7 +16,7 @@ module.exports = {
     author: `Athiththan`,
     description: `Static Site Generator for stackcheats`,
     sheetPath: SHEET_PATH,
-    siteUrl: ``,
+    siteUrl: `https://athiththan.github.io`,
     social: {
       twitter: `athiththan11`
     }

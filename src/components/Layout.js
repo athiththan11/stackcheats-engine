@@ -45,20 +45,41 @@ class Layout extends React.Component {
     //   )
     // }
 
-    header = (
-      <h3 className="container display-4 mt-5">
-        <Link
-          style={{
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
-    )
+    // header = (
+    //   <h3 className="container display-4 mt-5">
+    //     <Link
+    //       style={{
+    //         boxShadow: `none`,
+    //         textDecoration: `none`,
+    //         color: `inherit`
+    //       }}
+    //       to={`/`}
+    //     >
+    //       {title}
+    //     </Link>
+    //   </h3>
+    // )
+
+    if (location.pathname === rootPath) {
+      header = (
+        <div className="container mt-5"></div>
+      )
+    } else {
+      header = (
+        <h3 className="container display-4 mt-5">
+          <Link
+            style={{
+              boxShadow: `none`,
+              textDecoration: `none`,
+              color: `inherit`
+            }}
+            to={`/`}
+          >
+            {title}
+          </Link>
+        </h3>
+      )
+    }
 
     return (
       <div>
