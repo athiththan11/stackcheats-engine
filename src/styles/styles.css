@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Lora|Playfair+Display|Poiret+One|Sacramento&display=swap');
+
+/* ================================================================================= */
+
+.stackcheat-container {
+  max-width: 740px !important;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.subtitle {
+  color: rgba(0, 0, 0, 0.54);
+}
