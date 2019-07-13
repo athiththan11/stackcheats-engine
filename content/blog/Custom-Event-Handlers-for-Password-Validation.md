@@ -3,6 +3,7 @@ title: Custom Event Handlers for Password Validation
 intro: 'WSO2 Identity Server: Event Handlers + Java WatchService'
 short: something here
 category: WSO2
+tags: ['wso2', 'wso2-identity-server', 'event-handlers']
 author: Athiththan
 weight: -1
 updated: 2019-01-17
