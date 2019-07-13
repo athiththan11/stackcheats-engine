@@ -1,6 +1,7 @@
 const path = require(`path`)
+const _ = require('lodash')
 
-const QUERY = `
+const query = `
   {
     allMarkdownRemark {
       edges {
@@ -14,6 +15,7 @@ const QUERY = `
               updated
               author
               short
+              tags
           }
           fields {
             slug
@@ -25,63 +27,87 @@ const QUERY = `
 `
 
 const createPages = ({ graphql, actions }) => {
-  const StackCheatTemplate = path.resolve(
-    __dirname,
-    '..',
-    '..',
-    '..',
-    `src/templates/stackcheat-template.js`
-  )
+	const stackcheatTemplate = path.resolve(
+		`src/templates/stackcheat-template.js`
+	)
+	const tagsTemplate = path.resolve(`src/templates/tags-template.js`)
 
-  return graphql(QUERY).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
+	return graphql(query).then(result => {
+		if (result.errors) {
+			throw result.errors
+		}
 
-    // Create blog posts pages
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      // build pages
-      buildPage({ node, actions, StackCheatTemplate })
-    })
-  })
+		const stackcheats = result.data.allMarkdownRemark.edges
+
+		// Create stackcheats pages
+		stackcheats.forEach(({ node }) => {
+			buildPage({ node, actions, stackcheatTemplate })
+		})
+
+		buildTagPage({ stackcheats, actions, tagsTemplate })
+	})
 }
 
-function buildPage({ node, actions, StackCheatTemplate }) {
-  const { createPage, createRedirect } = actions
-  const path = node.fields.slug
+function buildPage({ node, actions, stackcheatTemplate }) {
+	const { createPage, createRedirect } = actions
+	const path = node.fields.slug
 
-  const context = {
-    slug: path,
-    node_id: node.id,
-    nodePath: path,
-    nodeType: 'sheet',
-    title: node.frontmatter.title,
-    category: node.frontmatter.category || '',
-    weight: node.frontmatter.weight || 0,
-    updated: node.frontmatter.updated,
-    author: node.frontmatter.author,
-    short: node.frontmatter.short
-  }
+	const context = {
+		slug: path,
+		node_id: node.id,
+		nodePath: path,
+		nodeType: 'sheet',
+		title: node.frontmatter.title,
+		category: node.frontmatter.category || 'stackcheat-story',
+		weight: node.frontmatter.weight || 0,
+		updated: node.frontmatter.updated,
+		author: node.frontmatter.author,
+		short: node.frontmatter.short,
+		tags: node.frontmatter.tags
+	}
 
-  createPage({
-    path,
-    component: StackCheatTemplate,
-    context
-  })
+	createPage({
+		path,
+		component: stackcheatTemplate,
+		context
+	})
 
-  const aliases = node.frontmatter.aliases || []
-  aliases.forEach(alias => {
-    const paths = {
-      fromPath: `/${alias}`,
-      toPath: path
-    }
+	const aliases = node.frontmatter.aliases || []
+	aliases.forEach(alias => {
+		const paths = {
+			fromPath: `/${alias}`,
+			toPath: path
+		}
 
-    createRedirect({
-      ...paths,
-      isPermanent: true,
-      redirectInBrowser: true
-    })
-  })
+		createRedirect({
+			...paths,
+			isPermanent: true,
+			redirectInBrowser: true
+		})
+	})
+}
+
+function buildTagPage({ stackcheats, actions, tagsTemplate }) {
+	const { createPage } = actions
+
+	let tags = []
+	_.each(stackcheats, edge => {
+		if (_.get(edge, 'node.frontmatter.tags')) {
+			tags = tags.concat(edge.node.frontmatter.tags)
+		}
+	})
+
+	tags = _.uniq(tags)
+
+	tags.forEach(tag => {
+		createPage({
+			path: `/tags/${_.kebabCase(tag)}/`,
+			component: tagsTemplate,
+			context: {
+				tag
+			}
+		})
+	})
 }
 
 module.exports = createPages
