@@ -13,37 +13,25 @@ class StackCheatTemplate extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
 
-        <div className="mt-5 container">
+        <div className="container stackcheat-container my-5">
           <div className="row mb-2">
             {/* title block */}
-            <div className="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-              {/* <h1>{post.frontmatter.title}</h1> */}
-
-              <div className="card bg-primary text-white border-0 p-3">
-                <div className="card-body">
-                  <h5 className="card-title mb-0">{post.frontmatter.title}</h5>
-                </div>
-              </div>
+            <div className="col">
+              <h1 style={{ fontFamily: 'Poiret none' }}>
+                {post.frontmatter.title}
+              </h1>
+              <h4
+                className="text-secondary font-weight-light"
+                style={{ fontFamily: 'Poiret none' }}
+              >
+                {post.frontmatter.intro}
+              </h4>
             </div>
           </div>
 
           {/* intro block */}
-          <div className="row mb-5">
-            <div className="col-12 col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-              {/* <h1>{post.frontmatter.title}</h1> */}
-
-              <div className="card p-3">
-                <div className="card-body">
-                  <p className="card-text">{post.frontmatter.intro}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div
-              className="col"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
+          <div className="row pt-4">
+            <div className="col text-justify" dangerouslySetInnerHTML={{ __html: post.html }} />
           </div>
         </div>
       </Layout>
