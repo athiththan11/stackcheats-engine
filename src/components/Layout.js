@@ -61,12 +61,10 @@ class Layout extends React.Component {
     // )
 
     if (location.pathname === rootPath) {
-      header = (
-        <div className="container mt-5"></div>
-      )
+      header = <div className="container pt-5" />
     } else {
       header = (
-        <h3 className="container display-4 mt-5">
+        <h4 className="display-5 py-5 px-3 font-weight-light text-muted">
           <Link
             style={{
               boxShadow: `none`,
@@ -77,12 +75,12 @@ class Layout extends React.Component {
           >
             {title}
           </Link>
-        </h3>
+        </h4>
       )
     }
 
     return (
-      <div>
+      <div className="container">
         {/* head element */}
         {header}
 

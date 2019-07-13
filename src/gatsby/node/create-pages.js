@@ -12,6 +12,8 @@ const QUERY = `
               category
               weight
               updated
+              author
+              short
           }
           fields {
             slug
@@ -56,7 +58,9 @@ function buildPage({ node, actions, StackCheatTemplate }) {
     title: node.frontmatter.title,
     category: node.frontmatter.category || '',
     weight: node.frontmatter.weight || 0,
-    updated: node.frontmatter.updated
+    updated: node.frontmatter.updated,
+    author: node.frontmatter.author,
+    short: node.frontmatter.short
   }
 
   createPage({

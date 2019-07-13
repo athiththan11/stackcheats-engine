@@ -23,6 +23,18 @@ const onCreateNode = ({ node, actions, getNode }) => {
       name: 'category',
       value: node.frontmatter.category || 'Default'
     })
+
+    createNodeField({
+      node,
+      name: 'author',
+      value: node.frontmatter.author || 'Athiththan'
+    })
+
+    createNodeField({
+      node,
+      name: 'short',
+      value: node.frontmatter.short
+    })
   }
 }
 
