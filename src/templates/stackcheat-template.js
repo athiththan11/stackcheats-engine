@@ -17,21 +17,19 @@ class StackCheatTemplate extends React.Component {
           <div className="row mb-2">
             {/* title block */}
             <div className="col">
-              <h1 style={{ fontFamily: 'Poiret none' }}>
-                {post.frontmatter.title}
-              </h1>
-              <h4
-                className="text-secondary font-weight-light"
-                style={{ fontFamily: 'Poiret none' }}
-              >
+              <h1 className="stackcheat--title">{post.frontmatter.title}</h1>
+              <h4 className="stackcheat--sub-title text-secondary font-weight-light">
                 {post.frontmatter.intro}
               </h4>
             </div>
           </div>
 
           {/* intro block */}
-          <div className="row pt-4">
-            <div className="col text-justify" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div className="row stackcheat-body pt-4">
+            <div
+              className="col"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
           </div>
         </div>
       </Layout>
