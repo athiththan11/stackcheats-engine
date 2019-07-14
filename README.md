@@ -1,5 +1,5 @@
 # stackcheats engine
 
-## Static Site Generator for stackcheats
+A Static Site Generator for stackcheats
 
 [:construction: Work In Progress]
