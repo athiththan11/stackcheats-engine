@@ -6,6 +6,13 @@ os:
 node_js:
     - '8.9.0'
 
+git:
+    submodules: false
+
+before_install:
+    - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+    - git submodule update --init --recursive
+
 script:
     - npm install
     - npm run lint
