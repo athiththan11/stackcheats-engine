@@ -18,4 +18,4 @@
 
 <br>
 
-[:construction: Work In Progress]
+[:construction: Continuing On (stackcheats.github.io)[https://github.com/stackcheats/stackcheats.github.io]]
