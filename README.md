@@ -18,4 +18,4 @@
 
 <br>
 
-[:construction: Continuing On (stackcheats.github.io)[https://github.com/stackcheats/stackcheats.github.io]]
+[:construction: Continuing On [stackcheats.github.io](https://github.com/stackcheats/stackcheats.github.io)]
